@@ -1,0 +1,356 @@
+/* ============================================================
+   Lume CSS Selector – Panel Styles (Dark theme)
+   Inspirado no visual do Chrome DevTools escuro
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Backgrounds */
+  --bg:            #2b2b2b;
+  --bg-row-target: #2e3233;
+  --bg-row-hover:  #333638;
+  --chip-bg:       #3d3f41;
+  --chip-bg-hover: #474a4d;
+
+  /* Borders */
+  --chip-border:       #58595b;
+  --chip-border-hover: #7a7c7f;
+  --toolbar-border:    #3d3f41;
+
+  /* Text */
+  --text:       #b0b0b0;
+  --text-bright:#d4d4d4;
+  --text-dim:   #666;
+
+  /* Chip text colours (VSCode-inspired) */
+  --c-tag:   #e0e0e0;
+  --c-id:    #9cdcfe;
+  --c-class: #4ec9b0;
+  --c-data:  #ce9178;
+  --c-style: #dcdcaa;
+  --c-aria:  #f48771;
+  --c-nth:   #c3a6ff;
+  --c-other: #b0b0b0;
+
+  /* Selection */
+  --sel-border: #4d9cf9;
+  --sel-bg:     rgba(77, 156, 249, 0.12);
+  --badge-bg:   #4d9cf9;
+  --badge-text: #000;
+
+  /* Toolbar / statusbar */
+  --toolbar-bg:    #252527;
+  --statusbar-bg:  #1e1e1e;
+  --statusbar-text:#888;
+  --status-active: #ce9178;
+
+  /* Buttons */
+  --btn-border: #4a4c4f;
+  --btn-text:   #888;
+  --btn-hover:  #3d3f41;
+  --btn-active-color: #4d9cf9;
+
+  --font-mono: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+  --font-ui:   -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ============================================================
+   Layout base
+   ============================================================ */
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ============================================================
+   Estado vazio
+   ============================================================ */
+
+.state-message {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px;
+  color: var(--text-dim);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.empty-icon {
+  font-size: 26px;
+  opacity: 0.35;
+}
+
+.state-message strong {
+  color: var(--text);
+}
+
+/* ============================================================
+   Hierarchy container (scrollável)
+   ============================================================ */
+
+#hierarchy-container {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0; /* obrigatório para flex + overflow */
+}
+
+/* ============================================================
+   Rows de hierarquia
+   ============================================================ */
+
+#hierarchy {
+  padding: 3px 0 2px;
+}
+
+.h-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: 4px;
+  padding: 4px 7px 4px 6px;
+  cursor: default;
+  transition: background 0.08s;
+}
+
+.h-row:hover {
+  background: var(--bg-row-hover);
+}
+
+/* Linha do elemento inspecionado (último da hierarquia) */
+.h-row.is-target {
+  background: var(--bg-row-target);
+  border-top: 1px solid #363a3c;
+  border-bottom: 1px solid #363a3c;
+}
+
+/* ============================================================
+   Chips clicáveis
+   ============================================================ */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 7px;
+  border-radius: 3px;
+  border: 1px solid var(--chip-border);
+  background: var(--chip-bg);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1;
+  white-space: nowrap;
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 0.1s, background 0.1s;
+}
+
+.chip:hover {
+  border-color: var(--chip-border-hover);
+  background: var(--chip-bg-hover);
+}
+
+.chip.selected {
+  border-color: var(--sel-border);
+  background: var(--sel-bg);
+}
+
+/* Cores por tipo */
+.chip-tag   { color: var(--c-tag);   }
+.chip-id    { color: var(--c-id);    }
+.chip-class { color: var(--c-class); }
+.chip-nth   { color: var(--c-nth);   }
+
+/* Atributos: variam por prefixo */
+.chip-attr-data  { color: var(--c-data);  }
+.chip-attr-style { color: var(--c-style); }
+.chip-attr-aria  { color: var(--c-aria);  }
+.chip-attr-other { color: var(--c-other); }
+
+/* ============================================================
+   Badge de contagem (dentro do chip selecionado)
+   ============================================================ */
+
+.chip-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 14px;
+  padding: 0 4px;
+  margin-left: 5px;
+  border-radius: 7px;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--font-ui);
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  flex-shrink: 0;
+  letter-spacing: 0;
+}
+
+/* ============================================================
+   Barra inferior
+   ============================================================ */
+
+#bottom-bar {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--toolbar-border);
+}
+
+/* Toolbar */
+#toolbar {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 4px 6px;
+  background: var(--toolbar-bg);
+  min-height: 32px;
+}
+
+.tool-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Empurra o grupo de ações para depois do contador */
+.tool-actions {
+  margin-left: 6px;
+}
+
+/* Botão de navegação << >> */
+.btn-nav {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: bold;
+  background: transparent;
+  border: 1px solid var(--btn-border);
+  border-radius: 3px;
+  color: var(--btn-text);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.1s, color 0.1s;
+}
+
+.btn-nav:hover:not(:disabled) {
+  background: var(--btn-hover);
+  color: var(--text-bright);
+}
+
+.btn-nav:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* Contador */
+.counter {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text);
+  min-width: 48px;
+  text-align: center;
+  padding: 0 4px;
+}
+
+/* Botões ícone (refresh, visibility, copy) */
+.btn-icon {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--btn-border);
+  border-radius: 3px;
+  color: var(--btn-text);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.1s, color 0.1s, border-color 0.1s;
+}
+
+.btn-icon:hover {
+  background: var(--btn-hover);
+  color: var(--text-bright);
+}
+
+.btn-icon[data-active="true"] {
+  color: var(--btn-active-color);
+  border-color: var(--sel-border);
+  background: var(--sel-bg);
+}
+
+/* Status bar */
+#statusbar {
+  padding: 3px 8px;
+  background: var(--statusbar-bg);
+  border-top: 1px solid #2f2f2f;
+  min-height: 20px;
+  overflow: hidden;
+}
+
+#status-text {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--statusbar-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#status-text.has-selector {
+  color: var(--status-active);
+}
+
+/* ============================================================
+   Scrollbar discreta
+   ============================================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #4a4c4f;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #5e6063;
+}
