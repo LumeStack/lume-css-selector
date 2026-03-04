@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy – Lume CSS Selector</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #1a1a2e;
+      background: #f8f9fb;
+    }
+
+    header {
+      background: #1a1a2e;
+      color: #fff;
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    header img {
+      width: 64px;
+      height: 64px;
+      border-radius: 14px;
+      margin-bottom: 16px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      font-size: 0.95rem;
+      color: #9ca3af;
+    }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #d1fae5;
+      color: #065f46;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 36px;
+      border: 1px solid #a7f3d0;
+    }
+
+    .summary-box {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-left: 4px solid #4d9cf9;
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 40px;
+    }
+
+    .summary-box p {
+      font-size: 1rem;
+      color: #374151;
+    }
+
+    .summary-box strong {
+      color: #1a1a2e;
+    }
+
+    h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin: 36px 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    p {
+      color: #374151;
+      margin-bottom: 12px;
+    }
+
+    ul {
+      color: #374151;
+      padding-left: 20px;
+      margin-bottom: 12px;
+    }
+
+    ul li {
+      margin-bottom: 6px;
+    }
+
+    .check-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .check-list li::before {
+      content: "✅ ";
+    }
+
+    .no-list li::before {
+      content: "🚫 ";
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 0.85rem;
+      color: #9ca3af;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    footer a {
+      color: #4d9cf9;
+      text-decoration: none;
+    }
+
+    a {
+      color: #4d9cf9;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Lume CSS Selector</h1>
+  <p>Privacy Policy</p>
+</header>
+
+<main>
+  <div class="badge">Last updated: March 3, 2026</div>
+
+  <div class="summary-box">
+    <p>
+      <strong>Short version:</strong> Lume CSS Selector does not collect, store, or transmit
+      any personal data — ever. All processing happens locally inside your browser's DevTools.
+      No servers. No tracking. No analytics.
+    </p>
+  </div>
+
+  <h2>1. What Is Lume CSS Selector?</h2>
+  <p>
+    Lume CSS Selector is a Chrome DevTools extension that adds a sidebar panel to the
+    <strong>Elements</strong> tab. It helps developers and QA engineers build CSS selectors
+    by clicking on element attributes in the inspected page.
+  </p>
+
+  <h2>2. Data Collection</h2>
+  <p>
+    This extension <strong>does not collect any personal data</strong>. Specifically, we do not collect:
+  </p>
+  <ul class="no-list">
+    <li>Names, email addresses, or contact information</li>
+    <li>Browsing history or visited URLs</li>
+    <li>Page content from the websites you inspect</li>
+    <li>CSS selectors you build or copy</li>
+    <li>Crash reports or usage analytics</li>
+    <li>Device identifiers or IP addresses</li>
+  </ul>
+
+  <h2>3. How the Extension Works</h2>
+  <p>
+    Lume CSS Selector operates entirely within your local browser environment:
+  </p>
+  <ul class="check-list">
+    <li>It reads the DOM of the page you are actively inspecting in Chrome DevTools using the standard <code>chrome.devtools.inspectedWindow.eval()</code> API.</li>
+    <li>All selector building, element highlighting, and match counting happen locally in your browser — no data leaves your machine.</li>
+    <li>It uses the DevTools <code>$0</code> reference (the currently selected element) to display element attributes. This information is never stored or transmitted.</li>
+    <li>The CSS selector you build is only written to your clipboard when you explicitly click the Copy button.</li>
+  </ul>
+
+  <h2>4. Data Storage</h2>
+  <p>
+    Lume CSS Selector does not use:
+  </p>
+  <ul class="no-list">
+    <li>Cookies</li>
+    <li><code>chrome.storage</code> (local or sync)</li>
+    <li><code>localStorage</code> or <code>sessionStorage</code></li>
+    <li>IndexedDB or any other persistent storage</li>
+  </ul>
+  <p>
+    All state (selected chips, current selector, match count) exists only in memory while
+    DevTools is open and is discarded when you close DevTools or navigate to a new page.
+  </p>
+
+  <h2>5. Network Requests</h2>
+  <p>
+    Lume CSS Selector makes <strong>zero network requests</strong>. It does not contact any
+    external server, API, or third-party service. There is no telemetry, no remote configuration,
+    and no update check performed by the extension itself.
+  </p>
+
+  <h2>6. Permissions</h2>
+  <p>
+    The extension requires no special browser permissions beyond what is necessary to operate
+    as a Chrome DevTools extension. It does not request access to <code>tabs</code>,
+    <code>history</code>, <code>cookies</code>, <code>identity</code>, or any other
+    sensitive permission. It does not use host permissions.
+  </p>
+
+  <h2>7. Third-Party Services</h2>
+  <p>
+    Lume CSS Selector does not integrate with any third-party services, analytics platforms,
+    advertising networks, or crash reporting tools.
+  </p>
+
+  <h2>8. Children's Privacy</h2>
+  <p>
+    This extension is a developer tool intended for professional use. It does not knowingly
+    collect information from anyone, including children under the age of 13.
+  </p>
+
+  <h2>9. Changes to This Policy</h2>
+  <p>
+    If we ever update this privacy policy, the updated version will be published at this URL
+    with a revised "Last updated" date. Since the extension collects no data, we do not
+    anticipate substantive changes.
+  </p>
+
+  <h2>10. Contact</h2>
+  <p>
+    If you have any questions about this privacy policy or the extension, please open an issue
+    on our GitHub repository:
+  </p>
+  <p>
+    <a href="https://github.com/LumeStack/lume-css-selector/issues" target="_blank">
+      https://github.com/LumeStack/lume-css-selector/issues
+    </a>
+  </p>
+
+</main>
+
+<footer>
+  <p>
+    &copy; 2026 <a href="https://github.com/LumeStack" target="_blank">LumeStack</a> &mdash;
+    Lume CSS Selector &mdash;
+    <a href="https://github.com/LumeStack/lume-css-selector" target="_blank">GitHub</a>
+  </p>
+</footer>
+
+</body>
+</html>
